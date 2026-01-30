@@ -5,7 +5,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class SAPI2 {
@@ -136,6 +139,64 @@ System.out.println(arr);
                 .filter(Objects::nonNull)
                 .distinct()
                 .forEach(System.out::println);
+
+
+//******************************* Functional Interface ********************************
+        // Supplier
+System.out.println("\n  Supplier interface in stream api");
+        Supplier<String> x=()-> "Sandesh Yadav";
+        System.out.println(x.get());
+
+// Consumer
+
+        System.out.println("\n  Consumer interface in stream api");
+        Consumer<String> consumer = s -> System.out.println(s);
+
+        consumer.accept("Hello Java");
+// consumer with stream api
+        List<String> names = Arrays.asList("Java", "Spring", "Kafka");
+        names.stream()
+                .forEach(name -> System.out.println(name));
+
+// Predicate simple example
+
+        Predicate<Integer> predicate = z -> z > 10;
+
+        System.out.println(predicate.test(20)); // true
+
+        // predicate with stream api
+
+        List<Integer> result = numbers.stream()
+                .filter(n -> n > 15)
+                .collect(Collectors.toList());
+
+        System.out.println(result);
+
+// Function
+
+        Function<String, Integer> function = s -> s.length();
+
+        System.out.println(function.apply("Java"));
+// function with stream api
+
+        // for string length
+        List<Integer> slengths = names.stream()
+                .map(s ->s.length())
+                .collect(Collectors.toList());
+
+        System.out.println(slengths);
+// for integer length
+        List<Integer> ilengths = numbers.stream()
+                .map(n -> String.valueOf(n).length())
+                .collect(Collectors.toList());
+
+        System.out.println(ilengths);
+
+        // foreach
+        numbers.stream()
+                .forEach(System.out::println);
+
+
 
         // ================= OBJECT FILTER =================
         List<Employee> employees = Arrays.asList(
