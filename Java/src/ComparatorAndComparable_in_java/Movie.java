@@ -36,7 +36,9 @@ public class Movie implements Comparable<Movie>  {      // for comparable implem
                 '}';
     }
 
-
+    
+//************************ This is For Comprable And EveryThing in One Place No Need To Create Class Outside like Comprator  ********************
+    
     @Override
     public int compareTo(Movie o) {
      //   return Integer.compare(this.year,o.year);   // Sort Based On year
@@ -44,3 +46,4 @@ public class Movie implements Comparable<Movie>  {      // for comparable implem
         return Double.compare(this.rating,o.rating);       // Sort Based On Rating
     }
 }
+
